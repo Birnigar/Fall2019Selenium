@@ -9,16 +9,18 @@ public class WarmUpAmazon {
 
         public static void main(String[] args) throws InterruptedException {
 
-
-            WebDriver driver= DriverFactory.createADriver("chrome");
+            WebDriver driver = DriverFactory.createADriver("chrome");
+            //go to amazon
             driver.get("http://amazon.com");
-            Thread.sleep(3000);
-            driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java book", Keys.ENTER);
+            //enter text and click ENTER
+            //enter search term + click on search button
+            driver.findElement(By.id("twotabsearchtextbox")).sendKeys("java book", Keys.ENTER);
 
-          //  driver.findElement(By.id("nav-search-submit-text")).click();
-            Thread.sleep(3000);
-           String title=driver.getTitle();
-            System.out.println("title = " + title);
+            Thread.sleep(4000);//to wait 2 seconds
+
+            String title = driver.getTitle();
+
+            //verify title contains search term
            if(title.contains("Java book")){
                System.out.println("test passed");
            }else{

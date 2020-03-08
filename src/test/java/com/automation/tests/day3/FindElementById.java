@@ -37,6 +37,12 @@ String actual=driver.findElement(By.className("subheader")).getText();
 
         System.out.println(href);
         System.out.println(className);
+        //let's click on Logout button. It looks like a button, but it's actually a link
+        //every element with <a> tag is a link
+        //if you have couple spaces in the text, just use partialLinkText instead of linkText
+        //linkText - equals()
+        //partialLinkText - contains() - complete match doesn't required
+        //don't put space
         logout.click();
         Thread.sleep(2000);
 

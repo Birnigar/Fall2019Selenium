@@ -19,7 +19,8 @@ public class FindElementPractice {
 
         WebElement signUp=driver.findElement(By.className("radius"));
         signUp.click();
-       // signUp.submit(); //click doesn't work also we can use submit(); method
+       // when you see type="submit", you can use submit() instead of click()
+        // it make sense to use when click() method doesn't work
        Thread.sleep(3000);
         String expected="Thank you for signing up. Click the button below to return to the home page.";
         WebElement message=driver.findElement(By.className("subheader"));
