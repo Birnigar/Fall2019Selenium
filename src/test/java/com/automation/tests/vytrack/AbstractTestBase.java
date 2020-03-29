@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public abstract class TestBase {
+public abstract class AbstractTestBase {
     protected WebDriverWait wait;
    protected Actions actions;
 
