@@ -31,12 +31,6 @@ public class NoSelectDropdown {
 
 
 
-
-
-
-
-
-
         BrowserUtils.wait(3);
         driver.quit();
 
