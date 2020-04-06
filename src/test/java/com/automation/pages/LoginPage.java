@@ -36,7 +36,7 @@ public class LoginPage {
         password.sendKeys(ConfigurationReader.getProperty("password"),Keys.ENTER);
     }
 
-    public String getWarningMessage(){
+    public String getWarningMessageText(){
         return warningMessage.getText();
     }
 

@@ -25,4 +25,8 @@ public class DateTimeUtilities {
 
         return ChronoUnit.HOURS.between(startTime,endTime);
     }
+
+    public static String getCurrentDate(String format){
+        return LocalDate.now().format(DateTimeFormatter.ofPattern(format));
+    }
 }

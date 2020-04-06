@@ -1,9 +1,15 @@
 package com.automation.utilities;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +34,7 @@ public class BrowserUtils {
     public static List<String> getTextFromWebElements(List<WebElement> elements) {
         List<String> textValues = new ArrayList<>();
         for (WebElement element : elements) {
+            if(!element.getText().isEmpty())
             textValues.add(element.getText());
         }
         return textValues;
@@ -62,5 +69,20 @@ public class BrowserUtils {
      */
     public static void scrollTo(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static  String getScreenshot(String name){
+        String path=System.getProperty("user.dir")+"/test-output/screenshots/"+name+".png";
+
+       TakesScreenshot takesScreenshot= (TakesScreenshot) Driver.getDriver();
+        File source=takesScreenshot.getScreenshotAs(OutputType.FILE);
+        File destination=new File(path);
+        try {
+            FileUtils.copyFile(source, destination);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return path;
     }
 }

@@ -5,7 +5,6 @@ import com.automation.utilities.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,6 +12,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 public class DayVerify {
@@ -40,25 +40,24 @@ public class DayVerify {
      List<WebElement> btnText=driver.findElements(By.xpath("//label"));
      BrowserUtils.wait(2);
      List<String> expected= Arrays.asList("Monday","Tuesday","Wednesday","Thursday","Friday");
-     List<String> actual=new ArrayList<>();
 
+        int counter=0;
 
-        for (int i = 0; i <btn.size() ; i++) {
-            if (btn.get(i).isEnabled() && !btn.get(i).getText().equals("Friday")) {
-                btn.get(i).click();
-                actual.add(btnText.get(i).getText());
-                btn.get(i).click();
-            } else if (btn.get(i).equals("Friday")) {
-                for (int j = 0; j < 6; j++) {
-                    btn.get(i).click();
-                }
-                actual.add(btnText.get(i).getText());
-            }
+        while (counter<3) {
+            Random random = new Random();
+            int checkBoxSelect = random.nextInt(btn.size());
+
+            if ((btn.get(checkBoxSelect).isEnabled()))
+                btn.get(checkBoxSelect).click();
+            System.out.println("Selected :" + btnText.get(checkBoxSelect).getText());
+
+                  // btn.get(checkBoxSelect).click();
+             if(btnText.get(checkBoxSelect).getText().equals("Friday")){
+                 counter++;
 
         }
-        BrowserUtils.wait(10);
+        }
 
-        Assert.assertEquals(actual.toString(),expected.toString());
 
 
 
